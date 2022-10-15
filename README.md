@@ -13,7 +13,7 @@ In short: ESP32 outputs cool GUIs over composite video.
 
 ![screenie](https://user-images.githubusercontent.com/27019702/196005026-6f2a9427-99b0-42b2-8f14-438de564b76f.png)
 
-[https://www.youtube.com/watch?v=byiO34u9l4k](OSSG Display Evaluation Part 1: Sony ECX336C)
+[OSSG Display Evaluation Part 1: Sony ECX336C](https://www.youtube.com/watch?v=byiO34u9l4k)
 
 #### Why (a brief backstory)?
 
