@@ -7,9 +7,13 @@ display high-quality GUIs over CVBS from an ESP32.
 
 In short: ESP32 outputs cool GUIs over composite video.
 
-### Screenshots
+### Screenshots + Video
 
+![homescreen demo](https://user-images.githubusercontent.com/27019702/196005017-4ba10187-060d-471f-8913-da1ae432f178.png)
 
+![screenie](https://user-images.githubusercontent.com/27019702/196005026-6f2a9427-99b0-42b2-8f14-438de564b76f.png)
+
+[https://www.youtube.com/watch?v=byiO34u9l4k](OSSG Display Evaluation Part 1: Sony ECX336C)
 
 #### Why (a brief backstory)?
 
