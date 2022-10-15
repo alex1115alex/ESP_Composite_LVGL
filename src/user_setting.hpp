@@ -2,41 +2,23 @@
 //#include <freertos/FreeRTOS.h>
 //#include <freertos/task.h>
 //#include "sdkconfig.h"
-#include <iostream>
+
 
 //#include "../lib/LovyanGFX/src/lgfx/v1/platforms/esp32/Panel_CVBS.hpp"
 //#include "../lib/LovyanGFX/src/lgfx/v1/platforms/esp32s2/Bus_Parallel16.hpp"
-#include "sdkconfig.h"
+
 
 #define LGFX_USE_V1
 #define LGFX_CVBS
 #define LGFX_ESP_WROVER_KIT
-#include <LovyanGFX.hpp>
+
+#include <iostream>
+#include <LovyanGFX.hpp> //here originally
+#include <driver/i2c.h>
+#include "global_settings.hpp"
+#include "sdkconfig.h"
 #include <lgfx/v1/platforms/esp32/Panel_CVBS.hpp>
 //#include <esp_lcd_panel_commands.h>
-#include <driver/i2c.h>
-
-/*
-The maximum resolution that can be output depends on the signal type.
-720x480 (NTSC,NTSC-J), 864x576 (PAL,PAL-M), 720x576 (PAL-N).
-
-Any resolution less than the maximum resolution can be set.
-It is recommended to specify the resolution obtained by dividing the maximum resolution by an integer.
-If you specify any other resolution, the ratio of pixels will vary depending on the location, 
-and the display will be slightly distorted.
-
-Notes:
-
-(For width)
-720/1.125 = 640
-480/1.125 = 426.666667
-
-(For height)
-720/1.2 = 600
-480/1.2 = 400
-
-Max res 720x480 will usually not display anything... too much memory?
-*/
 
 class LGFX : public lgfx::LGFX_Device
 {
@@ -45,23 +27,24 @@ public:
 
   LGFX(void)
   {
-    {                                      // Configure display panel control settings
+    {                                      
+       // Configure display panel control settings
       auto cfg = _panel_instance.config(); // Gets the structure for display panel settings.
 
       // SONY ECX336C res: 640x400
       // https://github.com/lovyan03/LovyanGFX/blob/develop/doc/Panel_CVBS.md
 
       // Set output resolution;
-      cfg.memory_width = 600;  // Output resolution width, OG 240
-      cfg.memory_height = 400; // Output resolution height, OG 160
+      cfg.memory_width = AV_WIDTH_OG;//600;  // Output resolution width, OG 240
+      cfg.memory_height = AV_HEIGHT_OG;//400; // Output resolution height, OG 160
 
       // Set the actual resolution to use; OG 208x128
-      cfg.panel_width = 580;  // The actual width to be used (set a value equal to or smaller than memory_width)
-      cfg.panel_height = 380; // Height actually used (Set the same value as memory_height or a smaller value)
+      cfg.panel_width = AV_WIDTH;  // The actual width to be used (set a value equal to or smaller than memory_width)
+      cfg.panel_height = AV_HEIGHT; // Height actually used (Set the same value as memory_height or a smaller value)
 
       // Set display position offset amount;
-      cfg.offset_x = 10; // Amount to shift the display position to the right (initial value 0)
-      cfg.offset_y = 10; // Amount to shift the display position downward (initial value 0)
+      cfg.offset_x = AV_SAFEZONE/2; // Amount to shift the display position to the right (initial value 0)
+      cfg.offset_y = AV_SAFEZONE/2; // Amount to shift the display position downward (initial value 0)
 
       _panel_instance.config(cfg);
 
