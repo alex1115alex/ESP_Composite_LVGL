@@ -28,3 +28,10 @@ Some months ago I built the [Telescope](https://github.com/alex1115alex/wearable
 Unfortunately, the display library used, [ESP_8_BIT_Composite](https://github.com/Roger-random/ESP_8_BIT_composite), had some serious limitations, notably a locked 256x240 resolution, only 8-bit color support, and the UI being written with the [AdafruitGFX library](https://github.com/adafruit/Adafruit-GFX-Library).
 
 We would obviously need something better for the [Open Source Smart Glasses](https://smartglasses.community/open-source-smart-glasses/) project, which is why this was created. Started as a fork off [Sukesh-Ak's library](https://github.com/sukesh-ak/ESP32-LVGL8x-SDSPI), this code allows us to rapidly develop high-quality GUIs in LVGL and display them over composite video from a mere ESP32. Pretty cool, huh?
+
+### TODO
+
+- Get SPIRAM working (required to enable display+wifi at the same time, but LovyanGFX freaks out when it's enabled)
+- Minimize RAM usage in general
+- Minimize UI code (some unneeded stuff in gui/)
+- Break UI code out into functions that can be called by OSSG firmware
